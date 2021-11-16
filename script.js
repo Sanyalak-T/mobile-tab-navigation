@@ -1,21 +1,20 @@
-const container = document.querySelector('.container')
-const unsplashURL = 'https://source.unsplash.com/random/'
-const rows = 10 
+const contents = document.querySelectorAll('.content')
+const listItems = document.querySelectorAll('nav ul li')
 
-for(let i = 0; i < rows * 3; i++) {
-    const img = document.createElement('img')
-    img.src = `${unsplashURL}${getRandomSize()}`
-    container.appendChild(img)
+listItems.forEach((item, idx) => {
+    item.addEventListener('click', () => {
+        hideAllContents()
+        hideAllItems()
+
+        item.classList.add('active')
+        contents[idx].classList.add('show')
+    })
+})
+
+function hideAllContents() {
+    contents.forEach(content => content.classList.remove('show'))
 }
 
-// console.log(getRandomSize())
-
-function getRandomSize() {
-    return `${getRandomNr()}x${getRandomNr()}`
-}
-
-// console.log(getRandomNr())
-
-function getRandomNr() {
-    return Math.floor(Math.random() * 10) + 300
+function hideAllItems() {
+    listItems.forEach(item => item.classList.remove('active'))
 }
